@@ -1,5 +1,5 @@
+pip-upgrader
 markovify==0.9.3
---upgrade pip
 tensorflow==2.7.0
 scikit-learn==0.24.1
 numpy==1.19.2
