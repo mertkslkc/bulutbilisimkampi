@@ -1,1 +1,1 @@
-APP_CONFIG=gunicorn_config.py
+APP_CONFIG='/opt/app-root/src/bulutbilisimkampi/gunicorn_config.py'
