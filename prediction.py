@@ -6,7 +6,9 @@ import pandas as pd
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, LSTM, Dropout, RepeatVector, TimeDistributed
 
-model_dir = '/opt/app-root/src/bulutbilisimkampi/model.h5'
+#/opt/app-root/src/bulutbilisimkampi/
+
+model_dir = 'model.h5'
 model = keras.models.load_model(model_dir)
 
 anomaly = []
