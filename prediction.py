@@ -11,15 +11,18 @@ model = keras.models.load_model(model_dir)
 
 anomaly = []
 
-def predict(data):    
+def predict(data):
+    anomaly.clear()
+    df = pd.Series(data)
     value = np.array(data["cpu_usage"])
     value = value.reshape((4,3,1))
     result = model.predict(value,verbose=0)
     loss = np.mean(np.abs(result - value), axis=1)
     threshold = np.mean(loss)
-    
-    df = pd.Series(data)
+    df['threshold'] = threshold
+
     for i in range(len(df['cpu_usage'])):
-        anomaly.append(df['cpu_usage'][i] > threshold)
+        anomaly.append(bool(df['cpu_usage'][i] > threshold))
     df['anomaly'] = anomaly
-    return  {"datetime": str(df['datetime']), "cpu_usage": str(df['cpu_usage']), "anomaly": str(df['anomaly'])}
+
+    return  {"datetime": list(df['datetime']), "cpu_usage": list(df['cpu_usage']), "anomaly": df['anomaly']}
